@@ -7,7 +7,7 @@ import (
 	"github.com/unknwon/com"
 )
 
-// GetPage 分页
+// GetPage 分页,保证了各接口的page处理是一致的
 func GetPage(c *gin.Context) int {
 	res := 0
 	page, _ := com.StrTo(c.Query("page")).Int()
