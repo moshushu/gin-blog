@@ -18,6 +18,11 @@
     * v1  版本
   * 6、接口表单验证
     * beego/validation
+  * 7、Jwt认证
+    * jwt-go
+    * token的生成（GenerateToken）和解析（ParseToken）
+  * 8、Jwt认证中间件 -- middleware
+    * 用于对接口做统一的token认证
 
 
 ## 第三方库
