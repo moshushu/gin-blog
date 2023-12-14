@@ -23,6 +23,12 @@
     * token的生成（GenerateToken）和解析（ParseToken）
   * 8、Jwt认证中间件 -- middleware
     * 用于对接口做统一的token认证
+  * 9、日志 -- 文件日志
+    * 自定义log
+      * 日志前缀
+      * 日志级别
+      * ...
+    * os库使用
 
 
 ## 第三方库
