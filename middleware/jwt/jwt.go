@@ -1,10 +1,11 @@
 package jwt
 
 import (
-	"gin-blog/pkg/e"
-	"gin-blog/pkg/util"
 	"net/http"
 	"time"
+
+	"github.com/moshushu/gin-blog/pkg/e"
+	"github.com/moshushu/gin-blog/pkg/util"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,11 +1,12 @@
 package api
 
 import (
-	"gin-blog/models"
-	"gin-blog/pkg/e"
-	"gin-blog/pkg/logging"
-	"gin-blog/pkg/util"
 	"net/http"
+
+	"github.com/moshushu/gin-blog/models"
+	"github.com/moshushu/gin-blog/pkg/e"
+	"github.com/moshushu/gin-blog/pkg/logging"
+	"github.com/moshushu/gin-blog/pkg/util"
 
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"

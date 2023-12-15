@@ -3,13 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
-	"gin-blog/pkg/setting"
-	"gin-blog/routers"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/moshushu/gin-blog/pkg/setting"
+	"github.com/moshushu/gin-blog/routers"
 )
 
 func main() {
