@@ -1,0 +1,61 @@
+info:
+  contact: {}
+paths:
+  /api/v1/tags:
+    post:
+      description: 新建文章标签
+      parameters:
+      - description: Name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: CreatedBy
+        in: query
+        name: created_by
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 新增文章标签
+  /api/v1/tags/{id}:
+    post:
+      description: 修改文章标签
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: ModifiedBy
+        in: query
+        name: modified_by
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 修改文章标签
+swagger: "2.0"
