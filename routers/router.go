@@ -1,11 +1,11 @@
 package routers
 
 import (
-	"gin-blog/docs"
-	"gin-blog/middleware/jwt"
-	"gin-blog/pkg/setting"
-	"gin-blog/routers/api"
-	v1 "gin-blog/routers/api/v1"
+	"github.com/moshushu/gin-blog/docs"
+	"github.com/moshushu/gin-blog/middleware/jwt"
+	"github.com/moshushu/gin-blog/pkg/setting"
+	"github.com/moshushu/gin-blog/routers/api"
+	v1 "github.com/moshushu/gin-blog/routers/api/v1"
 
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

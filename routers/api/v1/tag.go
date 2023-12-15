@@ -1,11 +1,12 @@
 package v1
 
 import (
-	"gin-blog/models"
-	"gin-blog/pkg/e"
-	"gin-blog/pkg/setting"
-	"gin-blog/pkg/util"
 	"net/http"
+
+	"github.com/moshushu/gin-blog/models"
+	"github.com/moshushu/gin-blog/pkg/e"
+	"github.com/moshushu/gin-blog/pkg/setting"
+	"github.com/moshushu/gin-blog/pkg/util"
 
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
