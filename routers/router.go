@@ -1,10 +1,14 @@
 package routers
 
 import (
+	"gin-blog/docs"
 	"gin-blog/middleware/jwt"
 	"gin-blog/pkg/setting"
 	"gin-blog/routers/api"
 	v1 "gin-blog/routers/api/v1"
+
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +22,11 @@ func InitRouter() *gin.Engine {
 	gin.SetMode(setting.RunMode)
 
 	r.GET("/auth", api.GetAuth)
+
+	// 针对 swagger 新增初始化动作和对应的路由规则
+	docs.SwaggerInfo.BasePath = "/api/v1"
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())
 	{

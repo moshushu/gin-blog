@@ -38,6 +38,9 @@
     * github.com/fvbock/endless
       * endless 热更新是采取创建子进程后，将原进程退出的方式，这点不符合守护进程的要求
     * 如果你的Golang >= 1.8，也可以考虑使用 http.Server 的 Shutdown 方法
+  * 11、Swagger接口文档
+    * swag init （生成文档再启动服务）
+    * https://github.com/swaggo/gin-swagger
 
 ## 第三方库
   * 1、com包
