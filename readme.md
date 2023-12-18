@@ -46,6 +46,8 @@
     * 定制自己的Create、Update 和 Delete回调
     * 用于回写”created_on“、”modified_on“、“deleted_on”值
 
+  * 13、重构第一步，对配置进行统管 -- 配置统管
+    * 要避免多 init 的情况，尽量由程序把控初始化的先后顺序
 
 ## 第三方库
   * 1、com包
