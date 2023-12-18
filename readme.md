@@ -42,6 +42,11 @@
     * swag init （生成文档再启动服务）
     * https://github.com/swaggo/gin-swagger
 
+  * 12、GORM Callbacks
+    * 定制自己的Create、Update 和 Delete回调
+    * 用于回写”created_on“、”modified_on“、“deleted_on”值
+
+
 ## 第三方库
   * 1、com包
     * go常用的工具包
