@@ -5,24 +5,22 @@ import (
 	"log"
 	"os"
 	"time"
-)
 
-var (
-	LogSavePath = "runtime/logs/"
-	LogSaveName = "log"
-	LogFileExt  = "log"
-	TimeFormat  = "20060102"
+	"github.com/moshushu/gin-blog/pkg/setting"
 )
 
 // 获取日志文件路径
 func getLogFilePath() string {
-	return LogSavePath
+	return setting.AppSetting.LogSavePath
 }
 
 // 获取完成的日志文件路径
 func getLogFileFullPath() string {
 	prefixPath := getLogFilePath()
-	suffixPath := fmt.Sprintf("%s%s.%s", LogSaveName, time.Now().Format(TimeFormat), LogFileExt)
+	suffixPath := fmt.Sprintf("%s%s.%s",
+		setting.AppSetting.LogSaveName,
+		time.Now().Format(setting.AppSetting.TimeFormat),
+		setting.AppSetting.LogFileExt)
 	return fmt.Sprintf("%s%s", prefixPath, suffixPath)
 }
 

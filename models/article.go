@@ -76,3 +76,10 @@ func DeleteArticle(id int) bool {
 	db.Where("id = ?", id).Delete(Article{})
 	return true
 }
+
+// 用cron启动定时清楚
+// 硬删除要使用 Unscoped()，这是 GORM 的约定
+func CleanAllArticle() bool {
+	db.Unscoped().Where("deleted_on != ?", 0).Delete(&Article{})
+	return true
+}
