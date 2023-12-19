@@ -1,9 +1,12 @@
 package routers
 
 import (
+	"net/http"
+
 	"github.com/moshushu/gin-blog/docs"
 	"github.com/moshushu/gin-blog/middleware/jwt"
 	"github.com/moshushu/gin-blog/pkg/setting"
+	"github.com/moshushu/gin-blog/pkg/upload"
 	"github.com/moshushu/gin-blog/routers/api"
 	v1 "github.com/moshushu/gin-blog/routers/api/v1"
 
@@ -21,11 +24,18 @@ func InitRouter() *gin.Engine {
 
 	gin.SetMode(setting.ServerSetting.RunMode)
 
+	// 实现 http.FileServer
+	// 用于读取的上传文件
+	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
+
 	r.GET("/auth", api.GetAuth)
 
 	// 针对 swagger 新增初始化动作和对应的路由规则
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+
+	// 图片上传
+	r.POST("/upload", api.UploadImage)
 
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())
