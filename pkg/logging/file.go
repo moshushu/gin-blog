@@ -46,7 +46,7 @@ func openLogFile(fileName, filePath string) (*os.File, error) {
 	// 4、是否能正常打开文件
 	f, err := file.Open(src+fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		return nil, fmt.Errorf("Fail to OpenFile : %v", err)
+		return nil, fmt.Errorf("Fail to OpenFile :%v", err)
 	}
 
 	return f, nil
