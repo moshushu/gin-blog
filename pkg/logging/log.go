@@ -30,8 +30,14 @@ const (
 )
 
 func Setup() {
-	filePath := getLogFileFullPath()
-	F = openLogFile(filePath)
+	var err error
+	filePath := getLogFilePath()
+	fileName := getLogFileName()
+
+	F, err = openLogFile(fileName, filePath)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	// LstdFlags 日志格式属性
 	logger = log.New(F, DefaultPrefix, log.LstdFlags)
