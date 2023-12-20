@@ -33,51 +33,75 @@ func (tag *Tag) BeforeUpdate(scope *gorm.Scope) error {
 }
 
 // 获取tag
-func GetTags(pageNum int, pageSize int, maps interface{}) (tags []Tag) {
-	db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&tags)
-	return
+func GetTags(pageNum int, pageSize int, maps interface{}) ([]Tag, error) {
+	var (
+		tags []Tag
+		err  error
+	)
+
+	if pageSize > 0 && pageNum > 0 {
+		err = db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&tags).Error
+	} else {
+		err = db.Where(maps).Find(&tags).Error
+	}
+
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, err
+	}
+
+	return tags, nil
 }
 
 // 获取tag数量
-func GetTagTotal(maps interface{}) (count int) {
-	db.Model(&Tag{}).Where(maps).Count(&count)
-	return
+func GetTagTotal(maps interface{}) (int, error) {
+	var count int
+	if err := db.Model(&Tag{}).Where(maps).Count(&count).Error; err != nil {
+		return 0, err
+	}
+	return count, nil
 }
 
 // 根据Name查询Tag
-func ExistTagByName(name string) bool {
+func ExistTagByName(name string) (bool, error) {
 	var tag Tag
-	db.Select("id").Where("name = ?", name).First(&tag)
-	return tag.ID > 0
+	if err := db.Select("id").Where("name = ?", name).First(&tag).Error; err != nil {
+		return false, err
+	}
+	if tag.ID > 0 {
+		return true, nil
+	}
+	return false, nil
 }
 
 // 新建一条tag
-func AddTag(name string, state int, createdBy string) bool {
-	db.Create(&Tag{
+func AddTag(name string, state int, createdBy string) error {
+	return db.Create(&Tag{
 		Name:      name,
 		State:     state,
 		CreatedBy: createdBy,
-	})
-	return true
+	}).Error
 }
 
 // 根据ID查询Tag
-func ExistTagByID(id int) bool {
+func ExistTagByID(id int) (bool, error) {
 	var tag Tag
-	db.Select("id").Where("id = ?", id).First(&tag)
-	return tag.ID > 0
+	if err := db.Select("id").Where("id = ?", id).First(&tag).Error; err != nil {
+		return false, err
+	}
+	if tag.ID > 0 {
+		return true, nil
+	}
+	return false, nil
 }
 
 // 根据ID删除Tag
-func DeleteTag(id int) bool {
-	db.Where("id = ?", id).Delete(&Tag{})
-	return true
+func DeleteTag(id int) error {
+	return db.Where("id = ?", id).Delete(&Tag{}).Error
 }
 
 // 根据ID修改Tag
-func EditTag(id int, data interface{}) bool {
-	db.Model(&Tag{}).Where("id = ?", id).Update(data)
-	return true
+func EditTag(id int, data interface{}) error {
+	return db.Model(&Tag{}).Where("id = ?", id).Update(data).Error
 }
 
 func CleanAllTag() bool {
